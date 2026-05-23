@@ -25,7 +25,7 @@
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 24px;
     padding: 48px 36px;
-    max-width: 420px;
+    max-width: 440px;
     width: 100%;
     text-align: center;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
@@ -72,18 +72,186 @@
     transform: translateY(0);
   }
 
-  .result {
-    margin-top: 32px;
-    padding: 28px 20px;
-    border-radius: 16px;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  .paywall, .result {
+    margin-top: 28px;
+    text-align: left;
+    display: none;
   }
 
-  .result.show {
-    opacity: 1;
-    transform: translateY(0);
+  .paywall.show, .result.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .paywall-header {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .lock-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  .paywall-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .paywall-sub {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .price {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .price .amount {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f27121;
+  }
+
+  .pay-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .pay-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: transform 0.1s ease, opacity 0.15s ease;
+  }
+
+  .pay-btn:hover { transform: translateY(-1px); }
+  .pay-btn:active { transform: translateY(0); }
+
+  .apple-pay {
+    background: #000;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .google-pay {
+    background: #fff;
+    color: #3c4043;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .field {
+    margin-bottom: 12px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .field input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 15px;
+    color: #fff;
+    font-family: inherit;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .field input:focus {
+    outline: none;
+    border-color: #e94560;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .field input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .pay-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #e94560 0%, #f27121 100%);
+    color: #fff;
+    border: none;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 8px 20px rgba(233, 69, 96, 0.35);
+    transition: transform 0.15s ease;
+  }
+
+  .pay-submit:hover { transform: translateY(-2px); }
+  .pay-submit:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+  }
+
+  .fine-print {
+    margin-top: 14px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .result {
+    text-align: center;
+    padding: 28px 20px;
+    border-radius: 16px;
   }
 
   .result.yes {
@@ -110,6 +278,29 @@
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
   }
+
+  .gag {
+    margin-top: 16px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
 </style>
 </head>
 <body>
@@ -120,37 +311,129 @@
 
     <button class="check" id="checkBtn">Check now</button>
 
+    <div class="paywall" id="paywall">
+      <div class="paywall-header">
+        <div class="lock-icon">🔒</div>
+        <div class="paywall-title">Your answer is ready</div>
+        <div class="paywall-sub">Add your card details below to unlock</div>
+      </div>
+
+      <div class="price">
+        <span>Premium Answer Access</span>
+        <span class="amount">$4.99</span>
+      </div>
+
+      <div class="pay-buttons">
+        <button class="pay-btn apple-pay" data-method="apple">
+           Pay
+        </button>
+        <button class="pay-btn google-pay" data-method="google">
+          G Pay
+        </button>
+      </div>
+
+      <div class="divider">or pay with card</div>
+
+      <form id="cardForm">
+        <div class="field">
+          <label for="cardName">Name on card</label>
+          <input id="cardName" type="text" placeholder="Jane Pizzalover" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="cardNumber">Card number</label>
+          <input id="cardNumber" type="text" placeholder="4242 4242 4242 4242" autocomplete="off" inputmode="numeric" />
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="cardExpiry">Expiry</label>
+            <input id="cardExpiry" type="text" placeholder="MM / YY" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="cardCvc">CVC</label>
+            <input id="cardCvc" type="text" placeholder="123" autocomplete="off" inputmode="numeric" />
+          </div>
+        </div>
+
+        <button type="submit" class="pay-submit" id="paySubmit">Unlock answer · $4.99</button>
+      </form>
+
+      <p class="fine-print">
+        Just kidding 🙂 this is a gag — no payment is processed and nothing is sent anywhere. Click anything to reveal the answer.
+      </p>
+    </div>
+
     <div class="result" id="result">
       <div class="answer" id="answer"></div>
       <div class="time" id="time"></div>
+      <div class="gag">(your card was definitely not charged)</div>
     </div>
   </div>
 
   <script>
     const btn = document.getElementById('checkBtn');
+    const paywall = document.getElementById('paywall');
     const result = document.getElementById('result');
     const answer = document.getElementById('answer');
     const time = document.getElementById('time');
+    const form = document.getElementById('cardForm');
+    const paySubmit = document.getElementById('paySubmit');
+
+    let pendingAnswer = null;
 
     btn.addEventListener('click', () => {
       const now = new Date();
       const isOpen = now.getHours() >= 12;
-
-      result.classList.remove('show', 'yes', 'no');
-      void result.offsetWidth;
-
-      if (isOpen) {
-        answer.textContent = 'Yes!';
-        result.classList.add('yes');
-      } else {
-        answer.textContent = 'Not yet';
-        result.classList.add('no');
-      }
-
       const hh = now.getHours().toString().padStart(2, '0');
       const mm = now.getMinutes().toString().padStart(2, '0');
-      time.textContent = `Checked at ${hh}:${mm}`;
-      result.classList.add('show');
+
+      pendingAnswer = {
+        isOpen,
+        text: isOpen ? 'Yes!' : 'Not yet',
+        time: `Checked at ${hh}:${mm}`,
+      };
+
+      result.classList.remove('show', 'yes', 'no');
+      paywall.classList.add('show');
+      paywall.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    function revealAnswer(method) {
+      paySubmit.disabled = true;
+      paySubmit.innerHTML = '<span class="spinner"></span>Processing…';
+
+      setTimeout(() => {
+        paywall.classList.remove('show');
+        answer.textContent = pendingAnswer.text;
+        time.textContent = pendingAnswer.time;
+        result.classList.add(pendingAnswer.isOpen ? 'yes' : 'no');
+        result.classList.add('show');
+
+        paySubmit.disabled = false;
+        paySubmit.textContent = 'Unlock answer · $4.99';
+      }, 900);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      revealAnswer('card');
+    });
+
+    document.querySelectorAll('.pay-btn').forEach(b => {
+      b.addEventListener('click', () => revealAnswer(b.dataset.method));
+    });
+
+    document.getElementById('cardNumber').addEventListener('input', (e) => {
+      const digits = e.target.value.replace(/\D/g, '').slice(0, 16);
+      e.target.value = digits.replace(/(.{4})/g, '$1 ').trim();
+    });
+
+    document.getElementById('cardExpiry').addEventListener('input', (e) => {
+      const digits = e.target.value.replace(/\D/g, '').slice(0, 4);
+      e.target.value = digits.length > 2 ? `${digits.slice(0,2)} / ${digits.slice(2)}` : digits;
+    });
+
+    document.getElementById('cardCvc').addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4);
     });
   </script>
 </body>
